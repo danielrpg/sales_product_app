@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tittleMarginTop">70dp</dimen>
+    <dimen name="tittleLoginMarginBottom">50dp</dimen>
+    <dimen name="tittleTextSize">24sp</dimen>
+
+    <dimen name="btnLoginMarginTop">75dp</dimen>
+    <dimen name="btnLoginLateralMargins">120dp</dimen>
+
+    <dimen name="btnSignUpMarginTop">60dp</dimen>
+    <dimen name="btnSignUpLateralMargins">90dp</dimen>
+
+    <dimen name="tbxMarginTop">25dp</dimen>
+    <dimen name="tbxLateralMargins">40dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

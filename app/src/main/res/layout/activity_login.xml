@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/tv_loginTittle_Li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tittleMarginTop"
+        android:layout_marginBottom="@dimen/tittleLoginMarginBottom"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:text="@string/login"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/tittleTextSize"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/txb_username_Li"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tbxMarginTop"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:ems="10"
+        android:hint="@string/txb_username"
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" tools:targetApi="o" />
+
+
+
+    <EditText
+        android:id="@+id/txb_password_Li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tbxMarginTop"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:ems="10"
+        android:hint="@string/txb_password"
+        android:inputType="textPassword"
+        android:autofillHints="" tools:targetApi="o"/>
+
+
+    <CheckBox
+        android:id="@+id/cb_remindMe_Li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tbxMarginTop"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:text="@string/remindMe" />
+
+    <Button
+        android:id="@+id/btn_confirm_Li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/btnSignUpLateralMargins"
+        android:layout_marginTop="@dimen/btnLoginMarginTop"
+        android:layout_marginRight="@dimen/btnSignUpLateralMargins"
+        android:background="@drawable/button_around"
+        android:backgroundTint="@color/colorAccent"
+        android:onClick="onClickConfirmBtn"
+        android:text="@string/btn_confirm"
+        android:textColor="@color/colorWhite" />
+
+    <Button
+        android:id="@+id/btn_signIn_Li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/btnSignUpLateralMargins"
+        android:layout_marginRight="@dimen/btnSignUpLateralMargins"
+        android:background="@drawable/button_around"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="onClickSignUpBtn"
+        android:text="@string/signUp"
+        android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/tv_forgotPass_Li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:text="@string/forgotPass"
+        android:textAlignment="center" />
+</LinearLayout>

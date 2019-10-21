@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignUpActivity">
+
+    <TextView
+        android:id="@+id/tv_signUpTittle_Si"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tittleMarginTop"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:text="@string/txv_signUp"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/tittleTextSize"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/txb_username_Si"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tbxMarginTop"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:ems="10"
+        android:hint="@string/txb_username"
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/txb_email_Si"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tbxMarginTop"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:ems="10"
+        android:hint="@string/txb_email"
+        android:inputType="textEmailAddress"
+        android:autofillHints="" tools:targetApi="o"/>
+
+    <EditText
+        android:id="@+id/txb_password_Si"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tbxMarginTop"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:ems="10"
+        android:hint="@string/txb_password"
+        android:inputType="textPassword"
+        android:autofillHints="" tools:targetApi="o"/>
+
+    <EditText
+        android:id="@+id/txb_confirmPassword_Si"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tbxLateralMargins"
+        android:layout_marginTop="@dimen/tbxMarginTop"
+        android:layout_marginRight="@dimen/tbxLateralMargins"
+        android:ems="10"
+        android:hint="@string/txb_confirmPassword"
+        android:inputType="textPassword"
+        android:autofillHints="" tools:targetApi="o"/>
+
+    <Button
+        android:id="@+id/btn_confirm_Si"
+        android:background="@drawable/button_around"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/btnSignUpLateralMargins"
+        android:layout_marginTop="@dimen/btnSignUpMarginTop"
+        android:layout_marginRight="@dimen/btnSignUpLateralMargins"
+        android:text="@string/btn_confirm" />
+</LinearLayout>
