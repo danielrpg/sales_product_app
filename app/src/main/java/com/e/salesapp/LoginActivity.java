@@ -15,13 +15,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onClickSignUpBtn(View v){
-        Intent mainIntent = new Intent(this,SignUpActivity.class);
-        startActivity(mainIntent);
+        Intent signUpIntent = new Intent(this,SignUpActivity.class);
+        startActivity(signUpIntent);
     }
 
     public void onClickConfirmBtn(View v){
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
+        Intent mainScreenIntent = new Intent(this, MainActivity.class);
+        startActivity(mainScreenIntent);
         finish();
     }
 }
