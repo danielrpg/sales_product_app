@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onClickConfirmBtn(View v){
-        Intent mainIntent = new Intent(this, CategoriesActivity.class);
+        Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
         finish();
     }
