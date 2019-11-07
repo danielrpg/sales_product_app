@@ -54,22 +54,21 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent optionIntent;
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this, InformationActivity.class);
-            startActivity(intent);
+            optionIntent = new Intent(this, InformationActivity.class);
+            startActivity(optionIntent);
 
         } else if (id == R.id.nav_slideshow) {
-            Intent intent = new Intent(this, VoucherDetailsActivity.class);
-            startActivity(intent);
+            optionIntent = new Intent(this, VoucherDetailsActivity.class);
+            startActivity(optionIntent);
 
         } else if (id == R.id.nav_tools) {
-            Intent intent = new Intent(this, ProductDetailsActivity.class);
-            startActivity(intent);
+            optionIntent = new Intent(this, ProductDetailsActivity.class);
+            startActivity(optionIntent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

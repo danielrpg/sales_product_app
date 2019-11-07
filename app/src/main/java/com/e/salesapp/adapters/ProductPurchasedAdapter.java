@@ -37,7 +37,7 @@ public class ProductPurchasedAdapter extends RecyclerView.Adapter<ProductPurchas
     public void onBindViewHolder(@NonNull ProductPurchasedHolder holder, int position) {
         String product = mProductList.get(position);
         TextView tv_name = holder.mTv_productName;
-
+        
         tv_name.setText(product);
     }
 
@@ -47,6 +47,7 @@ public class ProductPurchasedAdapter extends RecyclerView.Adapter<ProductPurchas
     }
 
     public class ProductPurchasedHolder extends RecyclerView.ViewHolder{
+        public static final int NO_ONE = 0;
 
         private TextView mTv_productName;
         private EditText mEt_quantity;
@@ -74,7 +75,7 @@ public class ProductPurchasedAdapter extends RecyclerView.Adapter<ProductPurchas
                 @Override
                 public void onClick(View view) {
                     int lastQuantity = Integer.parseInt(mEt_quantity.getText().toString());
-                    if (lastQuantity > 0) {
+                    if (lastQuantity > NO_ONE) {
                         String quantityDecreased = String.valueOf(lastQuantity - ONE_PRODUCT);
                         mEt_quantity.setText(quantityDecreased);
                     }

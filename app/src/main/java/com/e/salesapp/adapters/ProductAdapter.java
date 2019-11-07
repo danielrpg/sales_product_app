@@ -1,6 +1,7 @@
 package com.e.salesapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.e.salesapp.MainActivity;
+import com.e.salesapp.ProductPurchasedListActivity;
 import com.e.salesapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -46,7 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         ImageView iv_poster = holder.mIv_poster;
 
         Picasso.get()
-                .load("https://www.worldatlas.com/r/w728-h425-c728x425/upload/46/cb/e1/shutterstock-252338818.jpg")
+                .load(mContext.getResources().getString(R.string.image))
                 .into(iv_poster);
         tv_name.setText(product);
     }
@@ -58,11 +61,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
     public class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public static final int ONE_PRODUCT = 1;
+        public static final String ZERO_PRODUCTS = "0";
 
         private TextView mTv_product;
         private ImageView mIv_poster;
         private ImageButton mBtn_addQuantity;
         private ImageButton mBtn_decreaseQuantity;
+        private ImageButton mBtn_addToCart;
         private EditText mEt_quantity;
 
         ProductHolder(@NonNull View itemView) {
@@ -72,8 +77,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
             mEt_quantity = (EditText) itemView.findViewById(R.id.et_quantity);
             mBtn_decreaseQuantity = (ImageButton) itemView.findViewById(R.id.btn_decreaseQuantity);
             mBtn_addQuantity = (ImageButton) itemView.findViewById(R.id.btn_addQuantity);
+            mBtn_addToCart = (ImageButton) itemView.findViewById(R.id.btn_cart);
 
-            mEt_quantity.setText("0");
+            mEt_quantity.setText(ZERO_PRODUCTS);
 
             mBtn_addQuantity.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,6 +99,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
                     }
                 }
             });
+            mBtn_addToCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mProductClickListener.onAddToCart(getAdapterPosition());
+                }
+            });
             mIv_poster.setOnClickListener(this);
         }
 
@@ -104,5 +116,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
     public interface OnProductClickListener {
         void onImageClick(int position);
+        void onAddToCart(int position);
     }
 }

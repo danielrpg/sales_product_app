@@ -12,9 +12,9 @@ import com.synnapps.carouselview.ImageListener;
 public class ProductDetailsActivity extends AppCompatActivity {
 
     CarouselView mCarouselView;
-    String[] sampleImages = {"https://www.worldatlas.com/r/w728-h425-c728x425/upload/46/cb/e1/shutterstock-252338818.jpg",
-                            "https://previews.123rf.com/images/aiselin/aiselin1809/aiselin180900081/107486908-lots-of-fruits-strawberries-blueberries-mango-orange-grapefruit-banana-apple-grapes-kiwis-on-the-whi.jpg",
-                            "https://previews.123rf.com/images/cooperr007/cooperr0071711/cooperr007171100268/89193608-image-of-a-lot-of-fruits-and-vegetables-closeup.jpg"};
+    String[] sampleImages = {   getResources().getString(R.string.image),
+                                getResources().getString(R.string.image1),
+                                getResources().getString(R.string.image2)};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

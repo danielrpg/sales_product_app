@@ -1,15 +1,12 @@
 package com.e.salesapp;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.e.salesapp.adapters.ProductAdapter;
 import com.e.salesapp.adapters.ProductPurchasedAdapter;
 
 import java.util.ArrayList;
@@ -32,6 +29,7 @@ public class ProductPurchasedListActivity extends AppCompatActivity {
         //fake data
         cartList.add("Fruits");
         cartList.add("Vegetables");
+        cartList.add(getIntent().getStringExtra("product"));
 
         ProductPurchasedAdapter mProductAdapter = new ProductPurchasedAdapter(cartList, this);
 

@@ -48,5 +48,10 @@
     <string name="location_confirmation">We will send it to you as soon as possible via mail to :</string>
     <string name="thanks">Thanks.</string>
     <string name="productDetails">Product details</string>
+    <string name="shoppingCart">Shopping cart</string>
     <string name="empty">-</string>
+
+    <string name="image">https://www.worldatlas.com/r/w728-h425-c728x425/upload/46/cb/e1/shutterstock-252338818.jpg</string>
+    <string name="image1">https://previews.123rf.com/images/aiselin/aiselin1809/aiselin180900081/107486908-lots-of-fruits-strawberries-blueberries-mango-orange-grapefruit-banana-apple-grapes-kiwis-on-the-whi.jpg</string>
+    <string name="image2">https://previews.123rf.com/images/cooperr007/cooperr0071711/cooperr007171100268/89193608-image-of-a-lot-of-fruits-and-vegetables-closeup.jpg</string>
 </resources>

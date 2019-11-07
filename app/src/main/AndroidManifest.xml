@@ -19,7 +19,7 @@
             android:theme="@style/AppTheme"/>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ProductPurchasedListActivity"
-            android:label="Shopping cart"/>
+            android:label="@string/shoppingCart"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProductDetailsActivity"
             android:theme="@style/AppTheme"/>

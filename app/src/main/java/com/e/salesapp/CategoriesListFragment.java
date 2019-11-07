@@ -21,15 +21,15 @@ public class CategoriesListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View mRoot = inflater.inflate(R.layout.fragment_categories_list, container, false);
-        Button btn_category = mRoot.findViewById(R.id.btn_category);
+        View mCategoryRoot = inflater.inflate(R.layout.fragment_categories_list, container, false);
+        Button btn_category = mCategoryRoot.findViewById(R.id.btn_category);
         btn_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mCategoryListener.onClickCategory();
             }
         });
-        return mRoot;
+        return mCategoryRoot;
     }
 
     public interface OnCategorySelected{
