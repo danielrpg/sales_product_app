@@ -5,27 +5,30 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-    CarouselView carouselView;
-    int[] sampleImages = {R.drawable.fruits, R.drawable.fruits, R.drawable.fruits};
+    CarouselView mCarouselView;
+    String[] sampleImages = {   getResources().getString(R.string.image),
+                                getResources().getString(R.string.image1),
+                                getResources().getString(R.string.image2)};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
-        carouselView = (CarouselView) findViewById(R.id.carouselView);
-        carouselView.setPageCount(sampleImages.length);
-        carouselView.setImageListener(imageListener);
+        mCarouselView = (CarouselView) findViewById(R.id.carouselView);
+        mCarouselView.setPageCount(sampleImages.length);
+        mCarouselView.setImageListener(imageListener);
     }
 
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
+            Picasso.get().load(sampleImages[position]).into(imageView);
         }
     };
 }

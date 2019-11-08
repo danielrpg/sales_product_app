@@ -1,44 +1,31 @@
 package com.e.salesapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-
-import com.e.salesapp.adapters.ProductAdapter;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements  NavigationView.OnNavigationItemSelectedListener, CategoriesListFragment.OnCategorySelected{
+        implements  NavigationView.OnNavigationItemSelectedListener,
+                    CategoriesListFragment.OnCategorySelected {
+
+    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction()
-                .replace(R.id.container, new CategoriesListFragment(this))
+        mFragmentManager = getSupportFragmentManager();
+        mFragmentManager.beginTransaction()
+                .replace(R.id.mainActivityContainer, new CategoriesListFragment(this))
                 .commit();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -51,8 +38,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-
     }
 
     @Override
@@ -69,23 +54,21 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent optionIntent;
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this,InformationActivity.class);
-            startActivity(intent);
+            optionIntent = new Intent(this, InformationActivity.class);
+            startActivity(optionIntent);
 
         } else if (id == R.id.nav_slideshow) {
-            Intent intent = new Intent(this,VoucherDetailsActivity.class);
-            startActivity(intent);
+            optionIntent = new Intent(this, VoucherDetailsActivity.class);
+            startActivity(optionIntent);
 
         } else if (id == R.id.nav_tools) {
-            Intent intent = new Intent(this,ProductDetailsActivity.class);
-            startActivity(intent);
-
+            optionIntent = new Intent(this, ProductDetailsActivity.class);
+            startActivity(optionIntent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -95,7 +78,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main_navbar,menu);
+        getMenuInflater().inflate(R.menu.activity_main_navbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -104,7 +87,7 @@ public class MainActivity extends AppCompatActivity
 
         switch (item.getItemId()) {
             case R.id.action_cart:
-                Intent cartIntent = new Intent(this, InformationActivity.class);
+                Intent cartIntent = new Intent(this, ProductPurchasedListActivity.class);
                 startActivity(cartIntent);
                 break;
             default:
@@ -115,9 +98,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClickCategory() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction()
-                .replace(R.id.container, new ProductListFragment())
+        mFragmentManager.beginTransaction()
+                .replace(R.id.mainActivityContainer, new ProductListFragment())
                 .addToBackStack(null)
                 .commit();
     }

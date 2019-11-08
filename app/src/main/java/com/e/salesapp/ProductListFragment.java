@@ -5,44 +5,50 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.e.salesapp.R;
 import com.e.salesapp.adapters.ProductAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListFragment extends Fragment implements ProductAdapter.OnProductClickListener {
+public class ProductListFragment extends Fragment
+        implements ProductAdapter.OnProductClickListener{
+    List<String> mProductList = new ArrayList<>();
+
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_product_list,container,false);
-        RecyclerView rvMovies = root.findViewById(R.id.rv_products);
-        List<String> productList = new ArrayList<>();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View mProductListRoot = inflater.inflate(R.layout.fragment_product_list, container, false);
+        RecyclerView rvMovies = mProductListRoot.findViewById(R.id.rv_products);
 
         //fake data
-        productList.add("Fruits");
-        productList.add("Vegetables");
-        productList.add("Product1");
+        mProductList.add("Fruits");
+        mProductList.add("Vegetables");
+        mProductList.add("Product1");
 
-        ProductAdapter adapter = new ProductAdapter(productList,getContext(),this);
+        ProductAdapter mProductAdapter = new ProductAdapter(mProductList, getContext(), this);
 
         rvMovies.setHasFixedSize(true);
-        rvMovies.setAdapter(adapter);
+        rvMovies.setAdapter(mProductAdapter);
         rvMovies.setLayoutManager(new LinearLayoutManager(getContext()));
-        return root;
+        return mProductListRoot;
     }
 
     @Override
     public void onImageClick(int position) {
         Intent productDetailsIntent = new Intent(getActivity(), ProductDetailsActivity.class);
-        // cargar datos
         startActivity(productDetailsIntent);
+    }
+
+    @Override
+    public void onAddToCart(int position) {
+        Intent cartIntent = new Intent(getActivity(), ProductPurchasedListActivity.class);
+        cartIntent.putExtra("product",mProductList.get(position));
+        startActivity(cartIntent);
     }
 }

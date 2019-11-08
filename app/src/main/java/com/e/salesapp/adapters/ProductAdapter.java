@@ -1,6 +1,7 @@
 package com.e.salesapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,26 +14,29 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.e.salesapp.MainActivity;
+import com.e.salesapp.ProductPurchasedListActivity;
 import com.e.salesapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductHolder> {
 
-    private List<String> productList;
-    private Context context;
-    private ProductAdapter.OnProductClickListener listener;
+    private List<String> mProductList;
+    private Context mContext;
+    private ProductAdapter.OnProductClickListener mProductClickListener;
 
     public ProductAdapter(List<String> productList, Context context, OnProductClickListener listener) {
-        this.productList = productList;
-        this.context = context;
-        this.listener = listener;
+        this.mProductList = productList;
+        this.mContext = context;
+        this.mProductClickListener = listener;
     }
 
     @NonNull
     @Override
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(mContext);
         View productCard = inflater.inflate(R.layout.product_item, parent, false);
         return new ProductHolder(productCard);
     }
@@ -40,62 +44,78 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
     @Override
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
 
-        String product = productList.get(position);
-        TextView tv_name = holder.tv_product;
+        String product = mProductList.get(position);
+        TextView tv_name = holder.mTv_product;
+        ImageView iv_poster = holder.mIv_poster;
+
+        Picasso.get()
+                .load(mContext.getResources().getString(R.string.image))
+                .into(iv_poster);
         tv_name.setText(product);
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return mProductList.size();
     }
 
     public class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public static final int ONE_PRODUCT = 1;
+        public static final String ZERO_PRODUCTS = "0";
 
-        private TextView tv_product;
-        private ImageView iv_poster;
-        private ImageButton btn_addQuantity;
-        private ImageButton btn_decreaseQuantity;
-        private EditText et_quantity;
+        private TextView mTv_product;
+        private ImageView mIv_poster;
+        private ImageButton mBtn_addQuantity;
+        private ImageButton mBtn_decreaseQuantity;
+        private ImageButton mBtn_addToCart;
+        private EditText mEt_quantity;
 
         ProductHolder(@NonNull View itemView) {
             super(itemView);
-            iv_poster = (ImageView) itemView.findViewById(R.id.iv_poster);
-            tv_product = (TextView) itemView.findViewById(R.id.tv_productName);
-            et_quantity = (EditText) itemView.findViewById(R.id.et_quantity);
-            btn_decreaseQuantity = (ImageButton) itemView.findViewById(R.id.btn_decreaseQuantity);
-            btn_addQuantity = (ImageButton) itemView.findViewById(R.id.btn_addQuantity);
+            mIv_poster = (ImageView) itemView.findViewById(R.id.iv_poster);
+            mTv_product = (TextView) itemView.findViewById(R.id.tv_productName);
+            mEt_quantity = (EditText) itemView.findViewById(R.id.et_quantity);
+            mBtn_decreaseQuantity = (ImageButton) itemView.findViewById(R.id.btn_decreaseQuantity);
+            mBtn_addQuantity = (ImageButton) itemView.findViewById(R.id.btn_addQuantity);
+            mBtn_addToCart = (ImageButton) itemView.findViewById(R.id.btn_cart);
 
-            et_quantity.setText("0");
+            mEt_quantity.setText(ZERO_PRODUCTS);
 
-            btn_addQuantity.setOnClickListener(new View.OnClickListener() {
+            mBtn_addQuantity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int lastQuantity = Integer.parseInt(et_quantity.getText().toString());
-                    String quantityIncreased = String.valueOf(lastQuantity + 1);
-                    et_quantity.setText(quantityIncreased);
+                    int lastQuantity = Integer.parseInt(mEt_quantity.getText().toString());
+                    String quantityIncreased = String.valueOf(lastQuantity + ONE_PRODUCT);
+                    mEt_quantity.setText(quantityIncreased);
                 }
             });
-            btn_decreaseQuantity.setOnClickListener(new View.OnClickListener() {
+            mBtn_decreaseQuantity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int lastQuantity = Integer.parseInt(et_quantity.getText().toString());
+                    int lastQuantity = Integer.parseInt(mEt_quantity.getText().toString());
                     if (lastQuantity > 0) {
-                        String quantityDecreased = String.valueOf(lastQuantity - 1);
-                        et_quantity.setText(quantityDecreased);
+                        String quantityDecreased = String.valueOf(lastQuantity - ONE_PRODUCT);
+                        mEt_quantity.setText(quantityDecreased);
                     }
                 }
             });
-            iv_poster.setOnClickListener(this);
+            mBtn_addToCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mProductClickListener.onAddToCart(getAdapterPosition());
+                }
+            });
+            mIv_poster.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            listener.onImageClick(getAdapterPosition());
+            mProductClickListener.onImageClick(getAdapterPosition());
         }
     }
 
     public interface OnProductClickListener {
         void onImageClick(int position);
+        void onAddToCart(int position);
     }
 }

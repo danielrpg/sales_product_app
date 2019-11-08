@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.e.salesapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +18,8 @@
             android:label=""
             android:theme="@style/AppTheme"/>
         <activity android:name=".SignUpActivity" />
+        <activity android:name=".ProductPurchasedListActivity"
+            android:label="@string/shoppingCart"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProductDetailsActivity"
             android:theme="@style/AppTheme"/>
