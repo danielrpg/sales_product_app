@@ -1,11 +1,9 @@
 package com.e.salesapp.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -14,20 +12,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.e.salesapp.MainActivity;
-import com.e.salesapp.ProductPurchasedListActivity;
 import com.e.salesapp.R;
+import com.e.salesapp.models.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductHolder> {
 
-    private List<String> mProductList;
+    private List<Product> mProductList;
     private Context mContext;
     private ProductAdapter.OnProductClickListener mProductClickListener;
 
-    public ProductAdapter(List<String> productList, Context context, OnProductClickListener listener) {
+    public ProductAdapter(List<Product> productList, Context context, OnProductClickListener listener) {
         this.mProductList = productList;
         this.mContext = context;
         this.mProductClickListener = listener;
@@ -44,14 +41,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
     @Override
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
 
-        String product = mProductList.get(position);
+        Product product = mProductList.get(position);
         TextView tv_name = holder.mTv_product;
         ImageView iv_poster = holder.mIv_poster;
 
         Picasso.get()
                 .load(mContext.getResources().getString(R.string.image))
                 .into(iv_poster);
-        tv_name.setText(product);
+        tv_name.setText(product.getProductName());
+
     }
 
     @Override

@@ -1,10 +1,12 @@
-package com.e.salesapp;
+package com.e.salesapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.e.salesapp.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

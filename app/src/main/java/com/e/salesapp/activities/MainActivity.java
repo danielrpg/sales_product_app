@@ -1,43 +1,71 @@
-package com.e.salesapp;
+package com.e.salesapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+
 import android.view.MenuItem;
+
+import com.e.salesapp.R;
+import com.e.salesapp.fragments.CategoriesListFragment;
+import com.e.salesapp.fragments.ProductListFragment;
+import com.e.salesapp.helpers.ConnectionSQLiteHelper;
 import com.google.android.material.navigation.NavigationView;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
+import static com.e.salesapp.utilities.CartUtility.TABLE_CART;
+import static com.e.salesapp.utilities.CartUtility.VERSION;
+
 public class MainActivity extends AppCompatActivity
-        implements  NavigationView.OnNavigationItemSelectedListener,
-                    CategoriesListFragment.OnCategorySelected {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        CategoriesListFragment.OnCategorySelected {
 
     private FragmentManager mFragmentManager;
+    private Toolbar mToolbar;
+    private DrawerLayout mDrawer;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        emptyCart();
+        initializeComponents();
+        showMainView();
+    }
+
+    private void showMainView() {
         mFragmentManager = getSupportFragmentManager();
         mFragmentManager.beginTransaction()
                 .replace(R.id.mainActivityContainer, new CategoriesListFragment(this))
                 .commit();
+    }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    private void initializeComponents() {
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        mDrawer = findViewById(R.id.drawer_layout);
+        mNavigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+
+    private void emptyCart() {
+        ConnectionSQLiteHelper connectionSQLiteHelper = new ConnectionSQLiteHelper(this, TABLE_CART, null, VERSION);
+        connectionSQLiteHelper.dropTable(TABLE_CART);
     }
 
     @Override
@@ -56,21 +84,23 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         Intent optionIntent;
+        switch (id) {
+            case R.id.nav_gallery:
+                optionIntent = new Intent(this, InformationActivity.class);
+                startActivity(optionIntent);
+                break;
+            case R.id.nav_slideshow:
+                optionIntent = new Intent(this, VoucherDetailsActivity.class);
+                startActivity(optionIntent);
+                break;
+            case R.id.nav_tools:
+                optionIntent = new Intent(this, ProductDetailsActivity.class);
+                startActivity(optionIntent);
+                break;
+            default:
+                break;
 
-        if (id == R.id.nav_home) {
-        } else if (id == R.id.nav_gallery) {
-            optionIntent = new Intent(this, InformationActivity.class);
-            startActivity(optionIntent);
-
-        } else if (id == R.id.nav_slideshow) {
-            optionIntent = new Intent(this, VoucherDetailsActivity.class);
-            startActivity(optionIntent);
-
-        } else if (id == R.id.nav_tools) {
-            optionIntent = new Intent(this, ProductDetailsActivity.class);
-            startActivity(optionIntent);
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -85,13 +115,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.action_cart:
-                Intent cartIntent = new Intent(this, ProductPurchasedListActivity.class);
-                startActivity(cartIntent);
-                break;
-            default:
-                break;
+        if (item.getItemId() == R.id.action_cart) {
+            Intent cartIntent = new Intent(this, ProductPurchasedListActivity.class);
+            startActivity(cartIntent);
         }
         return super.onOptionsItemSelected(item);
     }

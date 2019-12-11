@@ -1,4 +1,4 @@
-package com.e.salesapp;
+package com.e.salesapp.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,13 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.e.salesapp.R;
+
 public class CategoriesListFragment extends Fragment {
 
     OnCategorySelected mCategoryListener;
 
-    CategoriesListFragment(OnCategorySelected categorySelected)
+    public CategoriesListFragment(OnCategorySelected categorySelected)
     {
         this.mCategoryListener = categorySelected;
     }

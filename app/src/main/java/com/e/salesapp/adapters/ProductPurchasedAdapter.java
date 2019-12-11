@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.e.salesapp.R;
+import com.e.salesapp.models.Product;
 
 import java.util.List;
 
@@ -17,10 +20,10 @@ import static com.e.salesapp.adapters.ProductAdapter.ProductHolder.ONE_PRODUCT;
 
 public class ProductPurchasedAdapter extends RecyclerView.Adapter<ProductPurchasedAdapter.ProductPurchasedHolder> {
 
-    private List<String> mProductList;
+    private List<Product> mProductList;
     private Context mContext;
 
-    public ProductPurchasedAdapter(List<String> mProductList, Context mContext) {
+    public ProductPurchasedAdapter(List<Product> mProductList, Context mContext) {
         this.mProductList = mProductList;
         this.mContext = mContext;
     }
@@ -35,15 +38,37 @@ public class ProductPurchasedAdapter extends RecyclerView.Adapter<ProductPurchas
 
     @Override
     public void onBindViewHolder(@NonNull ProductPurchasedHolder holder, int position) {
-        String product = mProductList.get(position);
-        TextView tv_name = holder.mTv_productName;
-        
-        tv_name.setText(product);
+        if (!mProductList.isEmpty()) {
+            Product product = mProductList.get(position);
+            TextView tv_name = holder.mTv_productName;
+
+            tv_name.setText(product.getProductName());
+        }else
+            Toast.makeText(mContext,"cart empty",Toast.LENGTH_LONG).show();
     }
 
     @Override
     public int getItemCount() {
         return mProductList.size();
+    }
+
+    public List<Product> getData() {
+        return mProductList;
+    }
+
+    public void removeItem(int position) {
+        mProductList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void removeAll(){
+        mProductList.clear();
+        notify();
+    }
+
+    public void restoreItem(Product item, int position) {
+        mProductList.add(position,item);
+        notifyItemInserted(position);
     }
 
     public class ProductPurchasedHolder extends RecyclerView.ViewHolder{

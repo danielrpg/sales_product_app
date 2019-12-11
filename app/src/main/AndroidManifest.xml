@@ -14,20 +14,20 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label=""
             android:theme="@style/AppTheme"/>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".ProductPurchasedListActivity"
+        <activity android:name=".activities.SignUpActivity" />
+        <activity android:name=".activities.ProductPurchasedListActivity"
             android:label="@string/shoppingCart"/>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".ProductDetailsActivity"
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.ProductDetailsActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".InformationActivity"
+        <activity android:name=".activities.InformationActivity"
             android:label="@string/AboutUs"/>
-        <activity android:name=".VoucherDetailsActivity"
+        <activity android:name=".activities.VoucherDetailsActivity"
             android:label="@string/finishPurchase"/>
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
