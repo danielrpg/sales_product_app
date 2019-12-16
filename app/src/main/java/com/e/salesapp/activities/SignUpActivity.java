@@ -1,8 +1,10 @@
-package com.e.salesapp;
+package com.e.salesapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.e.salesapp.R;
 
 public class SignUpActivity extends AppCompatActivity {
 
